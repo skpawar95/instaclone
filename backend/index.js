@@ -6,13 +6,13 @@ import connectDB from './utils/db.js';
 import userRoute from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
 import messageRoute from "./routes/message.route.js"
-import { app,server } from './socket/socket.js';
+import { app, server } from './socket/socket.js';
 import path from "path";
 
 dotenv.config({});
 
 
-const PORT = 8000;
+const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
 
@@ -48,7 +48,7 @@ app.use("/api/v1/message", messageRoute);
 // mongodb+srv://skpawar6468:p83imSj88WfdtDZx@cluster0.uenq5.mongodb.net/
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
-app.get("*", (req,res)=>{
+app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 })
 
